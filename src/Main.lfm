@@ -1,0 +1,519 @@
+object MainForm: TMainForm
+  Left = 2388
+  Height = 300
+  Top = 331
+  Width = 400
+  AllowDropFiles = True
+  Caption = 'Paleo Packager'
+  ClientHeight = 280
+  ClientWidth = 400
+  Constraints.MinHeight = 300
+  Constraints.MinWidth = 400
+  Menu = MainMenu
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnDropFiles = FormDropFiles
+  LCLVersion = '2.2.2.0'
+  object ButtonPanel: TPanel
+    Left = 0
+    Height = 75
+    Top = 26
+    Width = 400
+    Align = alTop
+    BevelOuter = bvNone
+    ClientHeight = 75
+    ClientWidth = 400
+    TabOrder = 1
+    object DriveEdit: TEdit
+      Left = 43
+      Height = 23
+      Top = 3
+      Width = 30
+      CharCase = ecUppercase
+      MaxLength = 1
+      OnKeyPress = DriveEditKeyPress
+      TabOrder = 0
+      Text = 'A'
+    end
+    object UserEdit: TEdit
+      Left = 119
+      Height = 23
+      Top = 3
+      Width = 30
+      Alignment = taRightJustify
+      CharCase = ecUppercase
+      MaxLength = 1
+      OnKeyPress = HexidecimalKeyPress
+      TabOrder = 1
+      Text = 'F'
+    end
+    object DriveLabel: TLabel
+      Left = 10
+      Height = 15
+      Top = 5
+      Width = 30
+      Caption = 'Drive:'
+      FocusControl = DriveEdit
+      ParentColor = False
+    end
+    object UserLabel: TLabel
+      Left = 90
+      Height = 15
+      Top = 5
+      Width = 26
+      Caption = 'User:'
+      FocusControl = UserEdit
+      ParentColor = False
+    end
+    object PadEdit: TCheckBox
+      Left = 185
+      Height = 19
+      Top = 5
+      Width = 126
+      Caption = 'Pad Last Sector wth:'
+      OnChange = PadEditChange
+      TabOrder = 2
+    end
+    object PadCharEdit: TEdit
+      Left = 313
+      Height = 23
+      Top = 3
+      Width = 30
+      Alignment = taRightJustify
+      CharCase = ecUppercase
+      MaxLength = 2
+      OnKeyPress = HexidecimalKeyPress
+      TabOrder = 3
+      Text = 'FF'
+    end
+    object PackageFileLabel: TLabel
+      Left = 10
+      Height = 15
+      Top = 30
+      Width = 103
+      Caption = 'Package File Name:'
+      ParentColor = False
+    end
+    object PackageFileNameEdit: TFileNameEdit
+      Left = 10
+      Height = 23
+      Top = 45
+      Width = 380
+      DialogKind = dkSave
+      DialogTitle = 'Save Package File'
+      Filter = 'Package Files (*.pkg)|*.pkg'
+      FilterIndex = 0
+      DefaultExt = 'pkg'
+      HideDirectories = False
+      ButtonWidth = 23
+      Glyph.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000000000000000
+        0000000000BF000000A7000000A7000000A7000000A7000000A7000000A70000
+        00A7000000A7000000A7000000A7000000BF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF0000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000AF0000000000000000000000000000
+        0000000000AF00000000000000000000000000000000000000000000000B0000
+        001F0000001F0000001F0000001F000000B20000000000000000000000000000
+        0000000000AF00000000000000000000000000000000000000000000005F0000
+        00A90000008700000087000000CE0000008D0000000000000000000000000000
+        0000000000AF00000000000000000000000000000000000000000000005F0000
+        0047000000000000005700000096000000010000000000000000000000000000
+        0000000000AF00000000000000000000000000000000000000000000005F0000
+        0047000000570000009600000001000000000000000000000000000000000000
+        0000000000AF00000000000000000000000000000000000000000000005F0000
+        009D000000960000000100000000000000000000000000000000000000000000
+        0000000000BF000000A7000000A7000000A7000000A7000000A7000000C80000
+        0099000000010000000000000000000000000000000000000000
+      }
+      NumGlyphs = 1
+      Anchors = [akTop, akLeft, akRight]
+      MaxLength = 0
+      TabOrder = 4
+    end
+    object UserHexLabel: TLabel
+      Left = 152
+      Height = 15
+      Top = 5
+      Width = 18
+      Caption = 'hex'
+      ParentColor = False
+    end
+    object PadCharHexLabel: TLabel
+      Left = 346
+      Height = 15
+      Top = 5
+      Width = 18
+      Caption = 'hex'
+      ParentColor = False
+    end
+  end
+  object StatusBar: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 257
+    Width = 400
+    Panels = <    
+      item
+        Width = 150
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object ListView: TListView
+    Left = 0
+    Height = 111
+    Top = 101
+    Width = 400
+    Align = alClient
+    Columns = <    
+      item
+        AutoSize = True
+        Caption = 'File'
+        MinWidth = 300
+        Width = 33
+      end    
+      item
+        Alignment = taRightJustify
+        Caption = 'Size'
+        MaxWidth = 100
+        MinWidth = 50
+      end    
+      item
+        Caption = 'Short Path'
+        Visible = False
+      end    
+      item
+        AutoSize = True
+        Caption = 'Name'
+        Width = 47
+      end>
+    DragMode = dmAutomatic
+    HideSelection = False
+    ReadOnly = True
+    RowSelect = True
+    SmallImages = EnableImages
+    SortColumn = 0
+    SortType = stText
+    TabOrder = 2
+    ViewStyle = vsReport
+    OnDragDrop = ListViewDragDrop
+    OnDragOver = ListViewDragOver
+  end
+  object StatusPanel: TPanel
+    Left = 0
+    Height = 45
+    Top = 212
+    Width = 400
+    Align = alBottom
+    BevelOuter = bvNone
+    ClientHeight = 45
+    ClientWidth = 400
+    TabOrder = 3
+    Visible = False
+    object StatusLabel: TLabel
+      Left = 10
+      Height = 15
+      Top = 5
+      Width = 380
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      ParentColor = False
+    end
+    object ProgressBar: TProgressBar
+      Left = 10
+      Height = 20
+      Top = 20
+      Width = 380
+      Anchors = [akTop, akLeft, akRight]
+      TabOrder = 0
+    end
+  end
+  object ToolBar: TToolBar
+    Left = 0
+    Height = 26
+    Top = 0
+    Width = 400
+    DisabledImages = DisableImage
+    EdgeBorders = [ebBottom]
+    Images = EnableImages
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+    object NewButton: TToolButton
+      Left = 1
+      Top = 0
+      Action = NewAction
+    end
+    object OpenButton: TToolButton
+      Left = 24
+      Top = 0
+      Action = OpenAction
+    end
+    object SaveButton: TToolButton
+      Left = 47
+      Top = 0
+      Action = SaveAction
+    end
+    object SaveAsButton: TToolButton
+      Left = 70
+      Top = 0
+      Action = SaveAsAction
+    end
+    object FileDivider: TToolButton
+      Left = 93
+      Height = 22
+      Top = 0
+      Style = tbsDivider
+    end
+    object AddButton: TToolButton
+      Left = 98
+      Top = 0
+      Action = AddAction
+    end
+    object DeleteButton: TToolButton
+      Left = 121
+      Top = 0
+      Action = DeleteAction
+    end
+    object OperationDivider: TToolButton
+      Left = 144
+      Height = 22
+      Top = 0
+      Caption = 'OperationDivider'
+      Style = tbsSeparator
+    end
+    object GenerateButton: TToolButton
+      Left = 152
+      Top = 0
+      Action = GenerateAction
+    end
+    object ExtractButton: TToolButton
+      Left = 175
+      Top = 0
+      Action = ExtractAction
+    end
+    object ReviewButton: TToolButton
+      Left = 198
+      Top = 0
+      Action = ReviewAction
+    end
+  end
+  object Label1: TLabel
+    Left = 118
+    Height = 15
+    Top = 150
+    Width = 34
+    Caption = 'Label1'
+    ParentColor = False
+  end
+  object MainMenu: TMainMenu
+    Images = EnableImages
+    Left = 40
+    Top = 136
+    object FileMenu: TMenuItem
+      Caption = '&File'
+      object NewMenu: TMenuItem
+        Action = NewAction
+      end
+      object OpenMenu: TMenuItem
+        Action = OpenAction
+      end
+      object SaveMenu: TMenuItem
+        Action = SaveAction
+      end
+      object SaveAsMenu: TMenuItem
+        Action = SaveAsAction
+      end
+      object FileSeparator: TMenuItem
+        Caption = '-'
+      end
+      object AddMenu: TMenuItem
+        Action = AddAction
+      end
+      object DeleteMenu: TMenuItem
+        Action = DeleteAction
+      end
+      object GenerateSeparator: TMenuItem
+        Caption = '-'
+      end
+      object GenerateMenu: TMenuItem
+        Action = GenerateAction
+      end
+      object ExtractMenu: TMenuItem
+        Action = ExtractAction
+      end
+      object ReviewMenu: TMenuItem
+        Action = ReviewAction
+      end
+      object ExitSeparator: TMenuItem
+        Caption = '-'
+      end
+      object ExitMenu: TMenuItem
+        Action = ExitAction
+      end
+    end
+    object HelpMenu: TMenuItem
+      Caption = '&Help'
+      object AboutMenu: TMenuItem
+        Action = AboutAction
+      end
+    end
+  end
+  object Actions: TActionList
+    Images = EnableImages
+    Left = 104
+    Top = 136
+    object NewAction: TAction
+      Caption = 'New'
+      Hint = 'Clear all fields.'
+      ImageIndex = 0
+      OnExecute = NewActionExecute
+      OnUpdate = NewActionUpdate
+      ShortCut = 16462
+    end
+    object OpenAction: TAction
+      Caption = '&Open…'
+      Hint = 'Open a Paleo Packager file.'
+      ImageIndex = 1
+      OnExecute = OpenActionExecute
+      ShortCut = 16463
+    end
+    object SaveAction: TAction
+      Caption = 'Save'
+      Hint = 'Save to a Paleo Packager file.'
+      ImageIndex = 2
+      OnExecute = SaveActionExecute
+      OnUpdate = SaveActionUpdate
+      ShortCut = 16467
+    end
+    object SaveAsAction: TAction
+      Caption = 'Save &As…'
+      ImageIndex = 3
+      OnExecute = SaveAsActionExecute
+      OnUpdate = SaveAsActionUpdate
+      ShortCut = 24659
+    end
+    object AddAction: TAction
+      Caption = '&Add…'
+      Hint = 'Add a file to the list.'
+      ImageIndex = 4
+      OnExecute = AddActionExecute
+      ShortCut = 16429
+    end
+    object DeleteAction: TAction
+      Caption = '&Delete…'
+      Hint = 'Delete the selected file from the list.'
+      ImageIndex = 5
+      OnExecute = DeleteActionExecute
+      OnUpdate = DeleteActionUpdate
+      ShortCut = 16430
+    end
+    object GenerateAction: TAction
+      Caption = '&Generate'
+      Hint = 'Generate a Package file.'
+      ImageIndex = 6
+      OnExecute = GenerateActionExecute
+      OnUpdate = GenerateActionUpdate
+      ShortCut = 16455
+    end
+    object ExtractAction: TAction
+      Caption = '&Extract…'
+      Hint = 'Extract the files from a Package file.'
+      ImageIndex = 7
+      OnExecute = ExtractActionExecute
+      ShortCut = 16453
+    end
+    object ReviewAction: TAction
+      Caption = '&Review…'
+      Hint = 'Review the package file.'
+      ImageIndex = 8
+      OnExecute = ReviewActionExecute
+      OnUpdate = ReviewActionUpdate
+      ShortCut = 16466
+    end
+    object ExitAction: TAction
+      Caption = 'E&xit'
+      Hint = 'Exit the utility.'
+      OnExecute = ExitActionExecute
+      OnUpdate = ExitActionUpdate
+    end
+    object AboutAction: TAction
+      Caption = '&About Paleo Packager…'
+      Hint = 'Show the About dialog.'
+      OnExecute = AboutActionExecute
+    end
+  end
+  object EnableImages: TImageList
+    Left = 176
+    Top = 136
+    Bitmap = {
+      4C7A0A0000001000000010000000550200000000000078DAED598B7682300CED
+      9FE39FF969D9AAD453C2CDABA1A073DB894ACB4DDA340F120A1195DBAD40D2E6
+      FAF9FA8DEE8D8CD7EBDF4F481E9E951EB3DBBF0D0F0DABE05F7C2C7D28F8178F
+      01BCAA8F7E5F000FF9B5FB3945F18EF523FCB22CEEF3FB18BC66BF9C90EDAF63
+      9577A336DE8FF5E3AA2D797CD8E2F3A5FE5FBFEFF7FB65FEDFD67C95FF737950
+      0F13FD5FDAFFBFFF4FF0FF75DF4F2207311B64E7E3B2BF9EC700FEA183043E2B
+      FFAFE2C334095FCFB7C65F44117CBBBE0AEF5A3FE0C1FD7DE3FB520E18254FCE
+      1D7D667DCC831812C9B9EB7DCFBD031E919CABE05D39D7297FBF1E3D9EBA72AE
+      A4476FCE1FD87FB3D75EE89AE8D6DF76DCD1E68FC2A763D0887F04F1621C08E0
+      7B3E517C8B1DD3E2C868CC51EE23693E8027C71E9D0F3E5B1F3A109F5D7F587F
+      BD0EB367B819F3EF0DF30CE0AD1C53EC5A2D85CFAC5FB2DF2CFE5348593F4563
+      F201FEF22EFE9FF577B7FE66F9FF1536F44EFE7F70FE3BDDFFB3FC0A256DAAEB
+      318474A1F429ACE735B5EF51E4BAC685B7EB9AA8FCFD337D71D515AE5E22D39D
+      BBAE40E7CFEA3AB1AE91EC6F44FE402F3152D78EC8CFE00FA95FCECCE533FA07
+      4EBCE96757F7EC955AC6D7B323317E59B5F4364614F2E9DFE8019BFB271F8F21
+      F97A9C8ACAC7E4DCFFCCDC76686EC558FE16281A7376D87606428F87F390B0E8
+      1AF9B62817C47BE8DBBDDD0A3CD49E53D32DD83719EFE576B932C803FA21D71D
+      E0A1E55FAE3B02383536AA3E59ECF8EC7C8F61E1513C86BF27CBC7BDDCB9F223
+      742BEFF39F5DA79EFF6C1E522EEDC733F2AD7548B6C37945E547F1D2197CABFC
+      33F57FB6CFFE007ABAD236
+    }
+  end
+  object DisableImage: TImageList
+    Left = 264
+    Top = 136
+    Bitmap = {
+      4C7A0A00000010000000100000007E0200000000000078DAED59D18EC33008DB
+      9F777FBED31EA68B38DBD86437755273AA6E6A432001C7841CC7F1B8DDEF37F4
+      1CE2DBFAFDF91FF54DDEBFDEA1E7D96ABF57AB63D4B6EA52B2AB3C7AD7C976F2
+      ECBB235F1FB69E6C7CB41ECE5A331B6BDF756C477E6DDDFC9D353A837CB7AECA
+      8735B6AAAF544C571FBBF6B2712EFCFF9599E01F61C2C53FB239C5FF6A678A7F
+      A40FD9A3E65AFDB0C65C877F36FF04BF6AFE17FE7F7D31B17DD55DFDD2B5D5C7
+      D5E7DDDAA3F89BC823B94BDEF73DD3FB089AB2DB8D3B258FF083F662579EE572
+      5DCEB7E2528D35C1DFAAF731684A77174729E7AABD4F716ECD55581C28CE553C
+      9970AE92FF14E7321C3A9C9BCEDF8D4D357FC50BCE99A3E3EBDDA7C34EC2E3CA
+      4687C33B7914CB095FEEE0FC9D8FAB9F7D4FE4591F670F547BC0240E55CC77F8
+      40D84AF6E6646DAA5DEEDAA631C5783FC903A71CE6C8777654FE65FE72E37752
+      835171DDD9EEF4FB34FED33D6D1A3F67C43FE38A04FF13FCB898DFC1FA54CF37
+      E19FF96BCA5FBBFC99E27FD79FBB364DCF1FD3BA8B23DFE56C69AD84E5719D7E
+      746674EAA6CEB986E5BACEB946E5AAA8C6546D67F94AD58FEC60FC97D4129D73
+      873BFF492D7137AE1D8C777CF22E2EFF8FFA4152CF62F503B79EDBD50F766AF6
+      EA2C93D40F1CFD9D8F9CF94FF6B4B49EBCA35FF1F4241F9BE84CEA9E4C36C5D9
+      14B7EACEEC1D7717EE1D068A1FC675ECAE02F14A37B75A0B73EECDD1BA75318C
+      F6767657D3DD69A931D4F7EEB7E25F961F23AC7677BB68DDEABC939A85C3FF6E
+      3DB3D3CFF663E43FA59FD57213FD2C0F9AE4B3F5B9DFCEF1B76B233B37BB6354
+      BFA1F78EFCF3F74B379A97AB7FED5BF312577FEDEBC82B1F4CF4A33BBF6FD29F
+      AE1FD2EFCABB79078B21F7DE6F95F9013962F57D
+    }
+  end
+end
